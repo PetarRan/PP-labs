@@ -1,7 +1,9 @@
 # PP-labs
 
-# Lab - 1
-## Group - 10
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+
+## Lab - 1
+### Group - 10
 
 Kreira JFlexspecifikaciju za generisanje leksičkog analizatora jezika koji je definisan sledećom
 gramakom:
