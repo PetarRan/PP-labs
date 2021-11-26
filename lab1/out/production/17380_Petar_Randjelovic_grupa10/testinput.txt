@@ -1,0 +1,25 @@
+program
+begin
+ **ovo je komentar**
+ a:integer b:char;
+ $a$:=356;
+ b:='c'
+boolean c:=false
+ x:= 45369
+ x:= 04539
+ y:= 04599
+ y:= 004599
+ z:= 0xA4
+ tekst := 't'
+ tekst2 := 'ovo je tekst'
+ novo:= 5.3
+ novo:= .3
+ novo:= 5.3E+3
+var := a
+++---
+while a < b : a:= a+b else a:=a-b
+< <= <> == > >=
+a:= a or a
+a:= b and b
+true false
+end
