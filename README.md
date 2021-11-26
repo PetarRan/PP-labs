@@ -20,25 +20,25 @@ WhileLoop → whileExpression:StatementelseStatement\
 Expression → ExpressionorAndExpression| AndExpression\
 AndExpression → AndExpressionandRelExpression| RelExpression\
 RelExpression → TermRelOpTerm| Term\
-RelOp → < | <= | == | <> | > | >=
+RelOp → < | <= | == | <> | > | >=\
 Term → ID| CONST| ( Expression)\
-Terminalni simbol ID u ovom programskom jeziku označava idenfikator (niz slova, cifara i znaka $ u kojem prvi znak ne može da bude cifra), a simbol CONST konstantu koja moze da bude zadata u jednom od sledećih formata: \
+Terminalni simbol ID u ovom programskom jeziku označava idenfikator (niz slova, cifara i znaka $ u kojem prvi znak ne može da bude cifra), a simbol CONST konstantu koja moze da bude zadata u jednom od sledećih formata:\
 
 1.Konstante pa int:\
-[<oznaka\_osnove\>] <niz\_cifara\_zadate\_osnove\>\
+[<oznaka\_osnove\>] <niz\_cifara\_zadate\_osnove\>
 
 Pri čemu oznaka osnove može biti\
 0 – za brojni sistem sa osnovom 8,\
 0x – za brojni sistem sa osnovom 16,\
 Ukoliko je oznaka osnove izostavljena, podrazumeva se osnova 10.\
 2.Konstante pa real:
-<niz\_cifara\>[<niz\_cifara\>][E[±] <niz\_cifara\>] i\
+<niz\_cifara\>[<niz\_cifara\>][E[±] <niz\_cifara\>]\
 <niz\_cifara\> [E[±] <niz\_cifara\>]\
 3.Konstante pa char:\
  <'znak'>\
 4.Konstante pa boolean:\
 true i false\
-Komentari u ovom programskom jeziku počinju simbolom \*\* i završavaju se simbolom \*\*.\
+Komentari u ovom programskom jeziku počinju simbolom \*\* i završavaju se simbolom \*\*.
 
 
 This project is licensed by University of Nis, Serbia
