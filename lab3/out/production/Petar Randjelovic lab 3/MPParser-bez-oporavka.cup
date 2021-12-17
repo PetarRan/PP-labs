@@ -1,0 +1,172 @@
+import java_cup.runtime.*;
+import java.io.*;
+
+parser code {:
+    public static void main( String[] args )
+    {
+        try
+        {
+            FileReader file = new FileReader( args[0] );
+            Scanner scanner = new MPLexer( file );
+            MPParser parser = new MPParser( scanner );
+			Symbol syntax_tree = parser.parse();
+			System.out.println(syntax_tree);
+			System.out.println(syntax_tree.value);
+        }
+        catch( Exception e )
+        {
+            e.printStackTrace();
+        }
+    }
+:};
+
+terminal PROGRAM, BEGIN, END, ID, EPSILON, INTEGER, CHAR, DOT, ASSIGN, COLON;
+terminal REAL, BOOLEAN, WHILE, OPEN_BRACKET, CLOSE_BRACKET, SEMI, COMMA, CONST;
+terminal ELSE, AND, OR, LESS, EQUAL, UNEQUAL, LESS_EQUAL, GREATER, GREATER_EQUAL;
+
+non terminal Program, Block, Variables, StatementList, Declaration, NameList, Type;
+non terminal Statement, WhileLoop, Expression, AndExpression, RelExpression, Term, RelOp;
+start with Program;
+Program ::= PROGRAM Block DOT
+{:
+    System.out.println("Smena 1 => Program!");
+:};
+
+Block ::= BEGIN Variables StatementList END
+{:
+    System.out.println("Smena 2  => Block!");
+:};
+
+Variables ::= Variables Declaration
+{:
+    System.out.println("Smena 3  => Variables Declaration!");
+:}
+| EPSILON
+{:
+    System.out.println("Smena 4  => Variables Epsilon!");
+:};
+
+Declaration ::= NameList COLON Type SEMI
+{:
+    System.out.println("Smena 5  => Declaration!");
+:};
+
+NameList ::= ID:id
+{:
+    System.out.println("Smena 6  => NameList -> ID '"+id+"'!");
+:}
+| NameList COMMA ID:id
+{:
+    System.out.println("Smena 7  => NameList -> NameList, ID'"+id+"'!");
+:};
+
+Type ::= INTEGER
+{:
+    System.out.println("Smena 8  => Type integer!");
+:}
+|CHAR
+{:
+    System.out.println("Smena 9  => Type char!");
+:}
+| REAL
+{:
+    System.out.println("Smena 10 => Type real!");
+:}
+| BOOLEAN
+{:
+    System.out.println("Smena 11 => Type boolean!");
+:};
+
+StatementList ::= Statement
+{:
+    System.out.println("Smena 12 => StatementList -> Statement!");
+:}
+
+| StatementList Statement
+{:
+    System.out.println("Smena 13 => StatementList -> StatementList Statement!");
+:};
+
+Statement ::= WhileLoop
+{:
+    System.out.println("Smena 14 => Statement -> WhileLoop!");
+:}
+
+| ID:id ASSIGN Expression SEMI
+{:
+    System.out.println("Smena 15 => Statement -> ID'"+id+"':= Expression; !");
+:}
+| Block
+{:
+    System.out.println("Smena 16 => Statement Block!");
+:};
+
+WhileLoop ::= WHILE Expression COLON Statement ELSE Statement
+{:
+    System.out.println("Smena 17 => WhileLoop!");
+:};
+
+Expression ::= Expression OR AndExpression
+{:
+    System.out.println("Smena 18 => Expression or AndExpresion!");
+:}
+| AndExpression
+{:
+    System.out.println("Smena 19 => Expression !");
+:};
+
+AndExpression ::= AndExpression AND RelExpression
+{:
+    System.out.println("Smena 20 => AndExpression and RelExpression!");
+:}
+| RelExpression
+{:
+    System.out.println("Smena 21 => AndExpression!");
+:};
+
+RelExpression ::= Term RelOp Term
+{:
+    System.out.println("Smena 22 => RelExpression!");
+:}
+| Term
+{:
+    System.out.println("Smena 23 => RelExpression!");
+:};
+
+RelOp ::= LESS
+{:
+    System.out.println("Smena 24 => RelOp less !");
+:}
+| LESS_EQUAL
+{:
+    System.out.println("Smena 25 => RelOp less_equal !");
+:}
+| EQUAL
+{:
+    System.out.println("Smena 26 => RelOp equal !");
+:}
+| UNEQUAL
+{:
+    System.out.println("Smena 27 => RelOp unequal !");
+:}
+| GREATER
+{:
+    System.out.println("Smena 28 => RelOp greater !");
+:}
+| GREATER_EQUAL
+{:
+    System.out.println("Smena 29 => RelOp equal !");
+:};
+
+Term ::= ID:id
+{:
+    System.out.println("Smena 30 => Term ID");
+:}
+| CONST:c
+{:
+    System.out.println("Smena 31 => Term CONST ");
+:}
+| OPEN_BRACKET Expression CLOSE_BRACKET
+{:
+    System.out.println("Smena 32 => Term!");
+:};
